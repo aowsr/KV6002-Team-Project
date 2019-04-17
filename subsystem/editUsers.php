@@ -75,6 +75,7 @@ if (isset ($_POST['username']) && isset($_POST['firstname'])&& isset($_POST['sur
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-info">Update</button>
+
                 </div>
             </form>
         </div>

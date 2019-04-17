@@ -43,7 +43,7 @@ if($stmtEmail->rowCount() == 0) {
                     $deleteStmt = $pdo->prepare($deleteSQL);
 
                     if ($deleteStmt->execute()) {
-                        header("location: home.php");
+                        header("location: Index.php");
                     }
                 }
             } else {
@@ -76,7 +76,7 @@ if($stmtEmail->rowCount() == 0) {
 
         <div class="form-group">
             <input type="submit" class="btn btn-primary" name="submit" value="Update Password">
-            <a class="btn btn-link" href="home.php">Cancel</a>
+            <a class="btn btn-link" href="Index.php">Cancel</a>
         </div>
 
     </form>

@@ -1,49 +1,38 @@
 <?php
 // Include config file
 require_once "default/connect.php";
-
 session_start();
-
-
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 $firstname = $surname = $email = "";
 $firstname_err = $surname_err = $email_err = "";
-$admin = $admin_err = "";
 $userType= $committee = $committee_err = "";
-
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
     // Validate firstname
     if(empty(trim($_POST["firstname"]))){
         $firstname_err = "Please enter a forname.";
     } else{
         $firstname = trim($_POST["firstname"]);
     }
-
     // Validate surname
     if(empty(trim($_POST["surname"]))){
         $surname_err = "Please enter a surname.";
     } else{
         $surname = trim($_POST["surname"]);
     }
-
 // Validate email
     if(empty(trim($_POST["email"]))){
         $email_err = "Please enter a email.";
     } else{
         // Prepare a select statement
         $sqlEmail = "SELECT email FROM users WHERE email = :email";
-
         if($stmtEmail = $pdo->prepare($sqlEmail)){
             // Bind variables to the prepared statement as parameters
             $stmtEmail->bindParam(":email", $param_email, PDO::PARAM_STR);
-
             // Set parameters
             $param_email = trim($_POST["email"]);
-
             // Attempt to execute the prepared statement
             if($stmtEmail->execute()){
                 if($stmtEmail->rowCount() == 1){
@@ -58,21 +47,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Close statement
         unset($stmtEmail);
     }
-
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
     } else{
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = :username";
-
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
             // Set parameters
             $param_username = trim($_POST["username"]);
-
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
@@ -87,29 +72,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Close statement
         unset($stmt);
     }
-
-    if(empty (trim($_POST["admin"])) && empty (trim($_POST["committee"]))){
+    if(empty (trim($_POST["committee"]))){
         $userType= "Member";
     }
 
     // Validate type
-   if(trim($_POST["admin"]) == 'admin'){
-        $userType = 'Admin';
-    }else{
-        echo "Incorrect verification code.";
-    }
-
-    // Validate type
-    if(trim($_POST["committee"]) == 'committee'){
+    if(trim($_POST["committee"]) == '12345'){
         $userType = 'Committee Member';
     }else{
         echo "Incorrect verification code.";
     }
-
     if(isset($_POST["admin"]) && (isset($_POST["committee"]))){
         echo "You can not register as both admin and committee member.";
     }
-
     // Validate password
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";
@@ -118,7 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $password = trim($_POST["password"]);
     }
-
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Please confirm password.";
@@ -128,14 +102,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
-
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($firstname_err)
         && empty($surname_err) && empty($email_err) && empty($admin_err) && empty($committee_err)){
-
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password, email, firstname, surname, userType) VALUES (:username, :password, :email, :firstname, :surname, :userType)";
-
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
@@ -144,7 +115,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":firstname", $param_firstname, PDO::PARAM_STR);
             $stmt->bindParam(":surname", $param_surname, PDO::PARAM_STR);
             $stmt->bindParam(":userType", $param_userType, PDO::PARAM_STR);
-
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
@@ -152,21 +122,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_firstname = $firstname;
             $param_surname = $surname;
             $param_userType = $userType;
-
-
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
-                header("location: login.php");
+                $last_id = $pdo->lastInsertId();
+                $sql2 ="INSERT INTO user_info (id) VALUES (:last_id)";
+                if($stmt2 = $pdo->prepare($sql2)) {
+                    $stmt2->bindParam(":last_id", $param_last_id, PDO::PARAM_STR);
+                    $param_last_id = $last_id;
+                    if($stmt2->execute()) {
+                        // Redirect to login page
+                        header("location: login.php");
+                    }
+                }
             } else{
                 echo "Something went wrong. Please try again later.";
             }
         }
-
         // Close statement
         unset($stmt);
     }
-
     // Close connection
     unset($pdo);
 }
@@ -220,12 +194,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <span class="help-block"><?php echo $committee_err; ?></span>
         </div>
 
-        <div class="form-group <?php echo (!empty($admin_err)) ? 'has-error' : ''; ?>">
-            <label>Admin?</label>
-            <p>Please enter the validation code below!</p>
-            <input type="text" name="admin" class="form-control" value="<?php echo $admin; ?>">
-            <span class="help-block"><?php echo $admin_err; ?></span>
-        </div>
 
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <label>Password</label>

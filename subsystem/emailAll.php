@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 if(($_SESSION["userType"] !== 'Committee Member')){
-    header("location: home.php");
+    header("location: Index.php");
     exit;
 }
 
@@ -73,7 +73,7 @@ if(isset($_POST) & !empty($_POST)) {
 
         <div class="form-group">
             <input type="submit" class="btn btn-primary" name="submit" value="Message">
-            <a class="btn btn-link" href="home.php">Cancel</a>
+            <a class="btn btn-link" href="Index.php">Cancel</a>
         </div>
 
     </form>

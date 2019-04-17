@@ -1,8 +1,7 @@
 <?php
 
-$con=mysqli_connect('localhost','unn_w16028251','Montybriah3');
 
-mysqli_select_db($con,'unn_w16028251');
+//mysqli_select_db($con,'unn_w16028251');
 
 
 /* Database credentials. Assuming you are running MySQL
