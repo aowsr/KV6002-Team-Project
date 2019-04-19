@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Include config file
+require_once('default/connect.php');
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -22,21 +28,36 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav pull-right mr-auto">
-                <a class="navbar-brand" href="#">TravelSite</a>
+                <a class="navbar-brand" href="Index.php">TravelSite</a>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="do_logout.php">Sign Out</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#"><?php echo htmlspecialchars($_SESSION["username"]); ?></a>
+                </li>
             </ul>
         </div>
     </nav>
 </header>
 <body>
-<div class="container mt-4 d-flex justify-content-center">
-<div class="page-header">
-    <h1><b>You are suspended.</b></h1>
-    <p>Please get in contact with our team to find out more...</p>
+
+
+<div class="jumbotron jumbotron-fluid">
+    <h1 class="display-4 text-center">Supsended!</h1>
+    <hr class="my-4">
+    <p class="lead text-center">Get in contact with our team to further understand this situation.</p>
 </div>
-<p>
-    <a href="do_logout.php" class="btn btn-danger">Sign Out of Your Account</a>
-</p>
-</div>
+
+
 </body>
 <!-- FOOTER -->
 <footer class="container mt-8">

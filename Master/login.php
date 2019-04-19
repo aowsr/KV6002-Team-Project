@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav pull-right mr-auto">
-                <a class="navbar-brand" href="#">TravelSite</a>
+                <a class="navbar-brand" href="Index.php">TravelSite</a>
             </ul>
             <ul class="navbar-nav pull-right ml-auto">
                 <li class="nav-item">
@@ -144,9 +144,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div>
 </div>
 </body>
-<!-- FOOTER -->
-<footer class="container mt-8">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 Northumbria University. &middot; Final Year Group Project</p>
-</footer>
+
 </html>

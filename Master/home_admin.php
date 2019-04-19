@@ -79,13 +79,12 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
 <body>
 <div class="container">
   <div class="card mt-4">
-    <div class="card-header">
+      <div class="card-header d-flex justify-content-center">
       <h2>All Users</h2>
     </div>
-    <div class="card-body">
+    <div class="card-body table-responsive">
       <table class="table table-bordered">
         <tr>
-          <th>ID</th>
           <th>Username</th>
           <th>Firstname</th>
             <th>Surname</th>
@@ -97,7 +96,6 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
         </tr>
         <?php foreach($people as $person): ?>
           <tr>
-            <td><?= $person->id; ?></td>
             <td><?= $person->username; ?></td>
             <td><?= $person->firstname; ?></td>
               <td><?= $person->surname; ?></td>
@@ -105,12 +103,16 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
               <td><?= $person->userType; ?></td>
               <td><?= $person->suspension; ?></td>
             <td>
-              <a href="editUsers.php?id=<?= $person->id ?>" class="btn btn-info">Edit</a>
-                <a onclick="return confirm('Are you sure you want to delete this user?')" href="deleteUsers.php?id=<?= $person->id ?>" class='btn btn-danger'>Delete</a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="editUsers.php?id=<?= $person->id ?>" class="btn btn-info">Edit</a>
+                    <a onclick="return confirm('Are you sure you want to delete this user?')" href="deleteUsers.php?id=<?= $person->id ?>" class='btn btn-danger'>Delete</a>
+                </div>
             </td>
               <td>
+                  <div class="btn-group" role="group" aria-label="Basic example">
                   <a onclick="return confirm('Are you sure you want to suspend this user?')" href="suspendUser.php?id=<?= $person->id ?>" class='btn btn-info'>Yes</a>
-                <a onclick="return confirm('Are you sure you want to unsuspend this user?')" href="unsuspendUser.php?id=<?= $person->id ?>" class='btn btn-info'>No</a>
+                <a onclick="return confirm('Are you sure you want to unsuspend this user?')" href="unsuspendUser.php?id=<?= $person->id ?>" class='btn btn-secondary'>No</a>
+                  </div>
             </td>
           </tr>
         <?php endforeach; ?>

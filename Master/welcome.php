@@ -1,8 +1,7 @@
 <?php
 session_start();
 // Include config file
-require_once('default/setPath.php');
-require_once('default/errorFunctions.php');
+
 require_once('default/connect.php');
 // Set session search variables to be empty when returning to this page
 

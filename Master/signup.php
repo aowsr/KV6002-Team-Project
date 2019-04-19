@@ -2,12 +2,14 @@
 // Include config file
 require_once "default/connect.php";
 session_start();
+
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 $firstname = $surname = $email = "";
 $firstname_err = $surname_err = $email_err = "";
 $userType = $committee = $committee_err = "";
+
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate firstname
@@ -239,9 +241,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 </body>
-<!-- FOOTER -->
-<footer class="container mt-8">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 Northumbria University. &middot; Final Year Group Project</p>
-</footer>
 </html>

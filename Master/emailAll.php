@@ -96,6 +96,20 @@ if (isset($_POST) & !empty($_POST)) {
     </nav>
 </header>
 <body>
+<?php
+if (($_SESSION["userType"] !== 'Committee Member')) {
+?>
+
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4 text-center">Upgrade Today!</h1>
+        <hr class="my-4">
+        <p class="lead text-center">This feature is only for our Committee Members.</p>
+    </div>
+<?php
+}
+else {
+?>
+
 <div class="container mt-4 d-flex justify-content-center">
     <div class="wrapper">
         <h2>Message All Users</h2>
@@ -107,7 +121,7 @@ if (isset($_POST) & !empty($_POST)) {
 
             <div class="form-group">
                 <label>Message: </label>
-                <input type="text" name="message" class="form-control" required>
+                <input type="text" name="message" class="form-control" style="height: 200px;" required>
             </div>
 
             <div class="form-group">
@@ -118,10 +132,11 @@ if (isset($_POST) & !empty($_POST)) {
         </form>
     </div>
 </div>
+
+<?php
+}
+?>
+
 </body>
-<footer class="container mt-8">
-    <br/>
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 Northumbria University. &middot; Final Year Group Project</p>
-</footer>
+
 </html>

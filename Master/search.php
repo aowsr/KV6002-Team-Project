@@ -20,10 +20,10 @@ if (isset($_POST['searchVal'])) {
         if ($stmt->execute()) {
 
             if ($stmt->rowCount() == 0) {
-
+                $output='';
             } else {
                 $output = '<ul ="dropdown">';
-                $output = '<h1 class ="resultsTitle"> People </h1>';
+                $output .= '<h1 class ="resultsTitle"><br> People </h1>';
 
                 while ($row = $stmt->fetch()) {
                     $fname = $row['firstname'];
@@ -39,28 +39,32 @@ if (isset($_POST['searchVal'])) {
                     $output .= '<a id="' . $searchID . '" class="searchResult" href="otherUserViewProfile.php?id=' . $searchID . '"><li> ' . $fname . ' ' . $lname . '</li></a>';
                 }
             }
-
         }
     }
 
     if ($stmtEvent = $pdo->prepare($eventQurey)) {
-        $output .= '<h1 class ="resultsTitle"> Events </h1>';
+        $output .= '<h1 class ="resultsTitle"><br> Events </h1>';
         // Execute prepared statement
         if ($stmtEvent->execute()) {
 
-                while ($row = $stmtEvent->fetch()) {
-                    $eventName = $row['eventTitle'];
-                    $eventLoc = $row['location'];
-                    $eventDate = $row['eventStartDate'];
+            while ($row = $stmtEvent->fetch()) {
+                $eventName = $row['eventTitle'];
+                $eventLoc = $row['location'];
+                $eventDate = $row['eventStartDate'];
 
-                    $searchedEventId = $row['eventID'];
+                $searchedEventId = $row['eventID'];
 
-                    $output .= '<a id="' . $searchedEventId . '" class="searchResult" href="otherUserViewProfile.php?id=' . $searchedEventId . '"><li> ' . $eventName . ' ' . $eventLoc . '</li></a>';
-                }
+                $output .= '<a id="' . $searchedEventId . '" class="searchResult" href="otherUserViewProfile.php?id=' . $searchedEventId . '"><li> ' . $eventName . ' ' . $eventLoc . '</li></a>';
             }
         }
+    }
     $output .= '</ul>';
+
+    if($_POST['searchVal'] == ''){
+        $output = '';
+    }
 }
+
 
 echo($output);
 

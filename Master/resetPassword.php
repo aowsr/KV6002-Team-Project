@@ -103,9 +103,4 @@ if($stmtEmail->rowCount() == 0) {
 </div>
 </div>
 </body>
-<footer class="container mt-8">
-    <br/>
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 Northumbria University. &middot; Final Year Group Project</p>
-</footer>
 </html>

@@ -1,8 +1,6 @@
 <?php
 session_start();
 // Include config file
-require_once('default/setPath.php');
-require_once('default/errorFunctions.php');
 require_once('default/connect.php');
 
 // Set session search variables to be empty when returning to this page
@@ -62,6 +60,7 @@ if (isset($_POST['submit']) && isset($_POST['search'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src=js/instantSearch.js></script>
+    <link rel="stylesheet" href="search.css">
 
 </head>
 <body>
@@ -111,10 +110,7 @@ if (isset($_POST['submit']) && isset($_POST['search'])) {
             <div class="col-12 col-md-10 col-lg-8">
                 <form class="card card-sm" action="" method="POST">
                     <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
-                        </div>
-                        <!--end of col-->
+
                         <div class="col">
                             <input class="form-control form-control-lg form-control-borderless"
                                    name="search" type="search" placeholder="Search for next adventure"
