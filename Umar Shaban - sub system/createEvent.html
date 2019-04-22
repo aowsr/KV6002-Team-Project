@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Event</title>
+    <link href="createNewEvent.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>Create New Event</h1>
+<form id="Event" action="eventCreated.php" method="get">
+<label for="eventTitle"></label>
+<div>Event Name:  <input type="text" name="eventTitle" id="eventTitle" accesskey="e"/></div>
+<label for="eventDescription"></label>
+<div>Event Description <input type="text" name="eventDescription" id="eventDescription" accesskey="e"/></div>
+<label for="location"></label>
+<div>Location <input type="text" name="location" id="location" accesskey="e"/></div>
+<label for="eventStartDate"></label>
+<div>Event Start Date:  <input type="text" name="eventStartDate" id="eventStartDate"/></div>
+<label for="eventEndDate"></label>
+<div>Event End Date:  <input type="text" name="eventEndDate" id="eventEndDate"/></div>
+<label for="eventPrice"></label>
+<div>Price:  <input type="number" name="eventPrice" id="eventPrice"></div>
+<div> <input type="submit" value="Create Event" /></div>
+</form>
+</body>
+</html>
