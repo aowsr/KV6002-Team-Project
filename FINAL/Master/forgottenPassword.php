@@ -51,9 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $to = $emailTo;
             $subject = "Your Password Reset Link";
 
+            $headers .= "From:<neetan.briah@northumbria.ac.uk>" . PHP_EOL;
+            $headers  = "MIME-Version: 1.0" . PHP_EOL;
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
+            $headers .= "X-Mailer: PHP/" . phpversion();
+
             $message = "Your requested password reset link. Click the link to proceed. $url";
 
-            $headers = "From : neetan.briah@northumbria.ac.uk";
             if (mail($to, $subject, $message, $headers)) {
                 header("location: welcome.php");
                 echo "Your Password reset link has been sent to your registered email";

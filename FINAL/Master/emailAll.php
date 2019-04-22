@@ -69,24 +69,23 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
 <?php
 if (($_SESSION["userType"] !== 'Committee Member')) {
-?>
+    ?>
 
     <div class="jumbotron jumbotron-fluid">
         <h1 class="display-4 text-center">Upgrade Today!</h1>
         <hr class="my-4">
         <p class="lead text-center">This feature is only for our Committee Members.</p>
     </div>
-<?php
-}
-else {
+    <?php
+} else {
 
-    $ops='';
+    $ops = '';
 
     $sql = "SELECT email FROM users";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $ops.= "<option value='" . $row['email'] . "'>" . $row['email'] . "</option>";
+        $ops .= "<option value='" . $row['email'] . "'>" . $row['email'] . "</option>";
     }
 
     if (isset($_POST) & !empty($_POST)) {
@@ -98,9 +97,14 @@ else {
 
         $to = "$to2";
         $subject = $subject2;
+
+        $headers .= "From:<neetan.briah@northumbria.ac.uk>" . PHP_EOL;
+        $headers = "MIME-Version: 1.0" . PHP_EOL;
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
         $message = $messageAll;
 
-        $headers = "From : neetan.briah@northumbria.ac.uk";
         if (mail($to, $subject, $message, $headers)) {
             header("location: Index.php");
         } else {
@@ -109,36 +113,34 @@ else {
     }
 
 
+    ?>
 
+    <div class="container mt-4 d-flex justify-content-center">
+        <div class="wrapper">
+            <h2>Message All Users</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="userType">To</label>
+                    <select name="to">
+                        <?php echo $ops; ?>
+                    </select>
+                </div>
 
-?>
+                <div class="form-group">
+                    <label>Message: </label>
+                    <input type="text" name="message" class="form-control" style="height: 200px;" required>
+                </div>
 
-<div class="container mt-4 d-flex justify-content-center">
-    <div class="wrapper">
-        <h2>Message All Users</h2>
-        <form method="post">
-            <div class="form-group">
-                <label for="userType">To</label>
-                <select name="to">
-                    <?php echo $ops;?>
-                </select>
-            </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-secondary" name="submit" value="Message">
+                    <a class="btn btn-dark" href="Index.php">Cancel</a>
+                </div>
 
-            <div class="form-group">
-                <label>Message: </label>
-                <input type="text" name="message" class="form-control" style="height: 200px;" required>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" class="btn btn-secondary" name="submit" value="Message">
-                <a class="btn btn-dark" href="Index.php">Cancel</a>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<?php
+    <?php
 }
 ?>
 

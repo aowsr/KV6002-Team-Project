@@ -76,7 +76,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">Our Goal. <span class="text-muted">It'll blow your mind.</span></h2>
-                <p class="lead">BLAH BLAH BLAH...</p>
+                <p class="lead">Some moments are better shared, TravelSite connects like-minded travellers so that you can
+                    share those moments with new friends. Post your travel adventure stories on the feed or ask other
+                    travellers for tips and advice.</p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto img-thumbnail"
@@ -90,7 +92,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Travel. <span class="text-muted">Like never before.</span></h2>
-                <p class="lead">BLAH BLAH BLAH...</p>
+                <p class="lead">Maybe you’re a backpacker, a solo traveller, a digital nomad or maybe you’re not even
+                    travelling right now but would love to meet travellers nearby? It doesn’t matter what type of
+                    traveller you are, on TravelSite you can create the community you want.</p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto img-thumbnail"
@@ -103,7 +107,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">Now. <span class="text-muted">It's Your Turn.</span></h2>
-                <p class="lead">Sign-up today and ...</p>
+                <p class="lead">Sign-up today and discover for yourself
+                what the craze is all about.</p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto img-thumbnail"
@@ -113,15 +118,13 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
         <hr class="featurette-divider">
 
-        <!-- /END THE FEATURETTES -->
-
     </div><!-- /.container -->
 </main>
 
 <!-- FOOTER -->
 <footer class="container mt-8">
     <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 Northumbria University. &middot; Final Year Group Project</p>
+    <p>&copy; 2018-2019 Northumbria University &middot; Final Year Group Project</p>
 </footer>
 
 </body>

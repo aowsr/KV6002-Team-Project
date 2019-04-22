@@ -8,7 +8,7 @@ $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 $firstname = $surname = $email = "";
 $firstname_err = $surname_err = $email_err = "";
-$userType = $userType_err  = "";
+$userType = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -80,9 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate surname
-    if (trim($_POST["committee"]) !== '12345') {
-        $userType_err = "Incorrect verification code.";
-    } else {
+    if (trim($_POST["committee"]) == '12345') {
         $userType = 'Committee Member';
     }
 
@@ -104,8 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     // Check input errors before inserting in database
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($firstname_err)
-        && empty($surname_err) && empty($email_err) && empty($userType_err)) {
+    if (isset($userType) && empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($firstname_err)
+        && empty($surname_err) && empty($email_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password, email, firstname, surname, userType) VALUES (:username, :password, :email, :firstname, :surname, :userType)";
         if ($stmt = $pdo->prepare($sql)) {
@@ -213,11 +211,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
 
-            <div class="form-group <?php echo (!empty($userType_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label><b>Committee Member?</b></label>
                 <p>Please enter the validation code below!</p>
                 <input type="text" name="committee" class="form-control" >
-                <span class="help-block"><?php echo $userType_err; ?></span>
             </div>
 
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
