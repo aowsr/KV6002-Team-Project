@@ -1,0 +1,80 @@
+
+#submit{
+    position: absolute;
+    width: 15%;
+    z-index: 99;
+    left: 80%;
+    top:35%;
+    background-color: #E14658;
+    padding: 5px;
+    -webkit-appearance: none;
+    border: 0;
+    transition: 0.5s;
+    font-size: 100%;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#submit:hover{
+    background-color: #d24456;
+    color: white;
+}
+
+
+#output{
+    position: absolute;
+    width:75%;
+    left:5%;
+    top:62%;
+    background-color: white;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-sizing: border-box;
+    padding:5px;
+}
+
+/* Search Results */
+#searchResults {
+    border: 2px solid rgba(225, 70, 88, 1);
+    border-radius: 25px;
+    position: relative;
+    width: 60%;
+    max-height: 80vh;
+    margin: 4% auto;
+    background-color: white;
+}
+
+#searchResults::-webkit-scrollbar {
+    display: none;
+}
+
+#searchTitle{
+    margin: 10px auto;
+    text-align: center;
+    font-size: 2vw;
+}
+
+.searchHeadings{
+    font-size: 1.3vw;
+    margin:0 0 10px 10px;
+}
+.searchResult{
+    width:100%;
+    background-color: white;
+    list-style: none;
+    color: #3d3d3d;
+}
+.searchResult:hover {
+    background-color: #b3b3b3;
+    color: black;
+}
+
+.resultsTitle{
+    font-size:1.3vw;
+}
+
+.eventLink:hover{
+    background-color: #3d3d3d;
+}
+
+
