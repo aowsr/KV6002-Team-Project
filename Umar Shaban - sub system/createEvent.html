@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <title>Create Event</title>
     <link href="createNewEvent.css" rel="stylesheet" type="text/css">
+
+    <script>
+        function validateForm() {
+            var x = document.forms["Event"]["eventTitle"].value;
+            if (x === ""){
+                alert("field(s) is empty");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 
 <h1>Create New Event</h1>
-<form id="Event" action="eventCreated.php" method="get">
+<form id="Event" name="Event" action="eventCreated.php"
+     method="get">
 <label for="eventTitle"></label>
-<div>Event Name:  <input type="text" name="eventTitle" id="eventTitle" accesskey="e"/></div>
+<div>Event Name:  <input type="text" name="eventTitle" id="eventTitle" maxlength="70" accesskey="e" required/></div>
 <label for="eventDescription"></label>
-<div>Event Description <input type="text" name="eventDescription" id="eventDescription" accesskey="e"/></div>
+<div>Event Description <input type="text" name="eventDescription" id="eventDescription" maxlength="250" accesskey="e" required/></div>
 <label for="location"></label>
-<div>Location <input type="text" name="location" id="location" accesskey="e"/></div>
+<div>Location <input type="text" name="location" id="location" accesskey="e" required/></div>
 <label for="eventStartDate"></label>
-<div>Event Start Date:  <input type="text" name="eventStartDate" id="eventStartDate"/></div>
+<div>Event Start Date:  <input type="date" name="eventStartDate" id="eventStartDate" min="2019-05-01" max="2020-12-12" required/></div>
 <label for="eventEndDate"></label>
-<div>Event End Date:  <input type="text" name="eventEndDate" id="eventEndDate"/></div>
+<div>Event End Date:  <input type="date" name="eventEndDate" id="eventEndDate" min="2019-05-01" max="2020-12-12" required/></div>
 <label for="eventPrice"></label>
-<div>Price:  <input type="number" name="eventPrice" id="eventPrice"></div>
-<div> <input type="submit" value="Create Event" /></div>
+<div>Price:  <input type="number" name="eventPrice" id="eventPrice" min="1" max="200"  required></div>
+<div> <input type="submit"   onsubmit="validateForm()"  value="Create Event" /></div>
 </form>
 </body>
 </html>

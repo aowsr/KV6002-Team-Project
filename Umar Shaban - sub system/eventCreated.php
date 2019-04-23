@@ -34,7 +34,7 @@ else if (!preg_match("/^[a-zA-Z ]*$/",$location)) {
     $location = "Only letters and white space allowed";
 }
 
-//if the event start dtae is empty, print out message to the user
+//if the event start date is empty, print out message to the user
 $eventStartDate = isset($_REQUEST['eventStartDate']) ? $_REQUEST['eventStartDate']: null;
 if (empty($eventStartDate)){
     echo "<p>You have not typed in a start date. Please try again.</p>\n";
@@ -73,8 +73,6 @@ $result = $con->query($sql);
 //If an error occurs,display error message
 if ($result === false) {
     echo "<p>Problem when saving: ".$dbConn->error.". Try again</p>\n</body>\n</html>";
-
-
     exit();
 }
 
@@ -89,11 +87,8 @@ else {
     echo "\t<p>Event End Date:$eventEndDate</p>\n";
     echo "\t<p>Event Price:$eventPrice</p>\n";
     echo "</section>\n";
-
     echo "<p>Thanks for inputting the details</p>\n";
     echo "<p> Go back to the <a href='createEvent.html'>form</a></p>\n";
-
-
 }
 //close the connection
 $con->close();

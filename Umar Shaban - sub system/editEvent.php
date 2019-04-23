@@ -34,12 +34,12 @@ else {
 		<h1>Edit '{$rowObj->eventTitle}'</h1>
 		<form id='editEvent' action='updateEvent.php' method='get'>
 			<p>Event ID<input ='eventID' value='$eventID' readonly name='eventID'/></p>
-			<p>Event Title <input type='text' name='eventTitle' size='50' value='{$rowObj->eventTitle}' /></p>
-			<p>Event Description <input type='text' name='eventDescription' value='{$rowObj->eventDescription}' /></p>
-			<p>Location<input type='text' name='location' value='{$rowObj->location}'/></p>
-			<p>Event Start Date<input type='text' name='eventStartDate' value='{$rowObj->eventStartDate}'/></p>
-			<p>Event End Date<input type='text' name='eventEndDate' value='{$rowObj->eventEndDate}'/></p>
-			<p>Event price<input type='number' name='eventPrice' value='{$rowObj->eventPrice}'/></p>
+			<p>Event Title <input type='text' name='eventTitle' maxlength='70' value='{$rowObj->eventTitle}' /></p>
+			<p>Event Description <input type='text' name='eventDescription' maxlength='250' required value='{$rowObj->eventDescription}' /></p>
+			<p>Location<input type='text' name='location' required value='{$rowObj->location}'/></p>
+			<p>Event Start Date<input type='text' name='eventStartDate' min='2019-05-01' max='2021-12-12' required value='{$rowObj->eventStartDate}'/></p>
+			<p>Event End Date<input type='text' name='eventEndDate' min='2019-05-01' max='2021-12-12' required value='{$rowObj->eventEndDate}'/></p>
+			<p>Event price<input type='number' name='eventPrice' min='1' max='200' required value='{$rowObj->eventPrice}'/></p>
 			<p><input type='submit' name='submit' value='Update Event'></p>
 			<p><a href='chooseEvent.php'>Go Back</a></p>
 		</form>
