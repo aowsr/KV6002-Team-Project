@@ -9,19 +9,27 @@
         .wrapper{ width: 350px; padding: 20px; }
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
-        .table{
-            display: block;
-            padding: 5px;
-            padding-top:10px;
-            padding-bottom:10px;
-            border: 1px solid white;
-            margin-bottom: 5px;
-            background-color: royalblue;
-            color: #000000;
+        #content {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
 
-        .cat_links:hover{
-            background-color: #dddddd;
+        #content td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #content tr:nth-child(even){background-color: #f2f2f2;}
+
+        #content tr:hover {background-color: #ddd;}
+
+        #content th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
@@ -45,25 +53,36 @@ if($statement->execute()) {
     if ($statement->rowCount() > 0) {
         if ($row = $statement->fetch()) {
             $id = $row['id'];
+            //$creator = $row['post_creator'];
+            //$time = $row['post_date'];
             $content = $row['post_content'];
 
             if (isset ($id, $content)){
-                $posts .= $id . $content .'<"class=table">'. '<br>' . '</a>';
+                $posts .= $id . $content . '<br>' . '</a>';
             }
             else{
                 $posts = "No ID Found";
             }
 
         }
-        echo $posts;
+        //echo $posts;
+        echo "<table id='content'>
+              <tr>
+              <th>ID:</th>
+              <th>Creator:</th>
+              <th>content:</th>
+              </tr>
+              <tr>
+              <td>$id</td>
+              <td>CREATOR</td>
+              <td>$content</td>
+              </tr>
+              </table> ";
     } else {
         echo "<p>There are no posts available yet</p>";
     }
 }
 ?>
 
-
-
-<?php echo $posts ?>
 </body>
 </html>

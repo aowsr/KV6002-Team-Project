@@ -66,7 +66,7 @@ if($statement->execute()) {
             $title = $row['category_title'];
 
             if (isset ($id)){
-                $categories .= '<a href="forum.php?id='.$id.'" class="cat_links">'. $id . $title . '<br>' . '</a>';
+                $categories .= '<a href="posts.php?id='.$id.'" class="cat_links">'. $id .'  |     ' . $title . '<br>' . '</a>';
             }
             else{
                 $categories = "No ID Found";
