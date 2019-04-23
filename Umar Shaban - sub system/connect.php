@@ -8,17 +8,6 @@ define('DB_USERNAME', 'unn_w16028251');
 define('DB_PASSWORD', 'Montybriah3');
 define('DB_NAME', 'unn_w16028251');
 
-$sql = "INSERT INTO events (eventTitle, eventDescription, location, eventStartDate,
-eventEndDate, eventPrice )
-VALUES ('$eventTitle','$eventDescription','$location', '$eventStartDate','$eventEndDate','$eventPrice' )";
-
-if ($con->query($sql) === true) {
-    echo "New record created successfully";
-}
-else {
-    echo "Error: " .$sql . "<br>" . $con->error;
-}
-
 
 
 /* Attempt to connect to MySQL database */
